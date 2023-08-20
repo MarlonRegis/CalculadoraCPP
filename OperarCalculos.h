@@ -1,6 +1,7 @@
-#pragma once
+#ifndef OPERARCALCULOS_H
+#define OPERARCALCULOS_H
 #include "Calculos.h"
-#include "Enums/OperadorEnum.h"
+#include "OperadorEnum.h"
 #include <string>
 #include <stdio.h>
 
@@ -9,7 +10,7 @@ namespace Core
     class OperarCalculos
     {
         public:
-            static std::string Operador(int primeiroValor, int SegundoValor, Enums::OperadorEnums operacao);
+            std::string Operador(int primeiroValor, int SegundoValor, Enums::OperadorEnums operacao);
             OperarCalculos();
             ~OperarCalculos();
         private:
@@ -24,3 +25,5 @@ namespace Core
             std::string AndBitwise(int primeiroValor, int segundoValor);
     };
 }
+
+#endif

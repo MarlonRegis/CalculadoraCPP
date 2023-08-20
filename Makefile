@@ -2,23 +2,19 @@
 PROJ_NAME=operacoes
  
 # .cpp files
-CPP_SOURCE=$(wildcard *.cpp)
-
-# define the C source files
-SRCS = operacoes.cpp
+CPP_SOURCE= operacoes.cpp OperarCalculos.cpp Calculos.cpp
 
 # Object files
-OBJS=$(patsubst %.cpp,%.o,$(CPP_SOURCE)))
+OBJS= $(CPP_SOURCE:.cpp=.o)
  
 # Compiler and linker
 CC=g++
+
+#Remove Command
+RM = -del -fR
  
 # Flags for compiler
-CC_FLAGS=-c         \
-         -W         \
-         -Wall      \
-         -ansi      \
-         -pedantic
+CC_FLAGS= -c -Wall -ansi -pedantic -std=c++17
 
 #
 # Compilation and linking
@@ -26,10 +22,10 @@ CC_FLAGS=-c         \
 all: $(PROJ_NAME)
 
 $(PROJ_NAME): $(OBJS)
-	$(CC) -o -std=gnu++17 $@ $^
+	$(CC) -o $@ $^
 
 %.o: %.cpp
-	$(CC) $(CC_FLAGS) -c $<
+	$(CC) $(CC_FLAGS) $<
 
 clean:
-	rm -rf $(PROJ_NAME) *.o
+	$(RM) $(PROJ_NAME).exe *.o

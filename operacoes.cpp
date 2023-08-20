@@ -1,31 +1,44 @@
-#include <iostream> // Inclui a biblioteca para entrada/saída
+#include <iostream>
 #include <string>
 #include <vector>
 #include <cctype>
 #include <algorithm>
-#include "Core/OperarCalculos.h"
+#include <cstring>
+#include "OperarCalculos.h"
 
 using namespace std;
 using namespace Core;
 using namespace Core::Enums;
 
-OperadorEnums StringToOperadorEnums(string operadorEnums) throw()
+OperadorEnums StringToOperadorEnums(string operadorEnums)
 {
-    if(operadorEnums == "+") return OperadorEnums::SOMA;
-    else if (operadorEnums == "-") return OperadorEnums::SUBTRACAO;
-    else if (operadorEnums == "*") return OperadorEnums::MULTIPLICACAO;
-    else if (operadorEnums == "/") return OperadorEnums::DIVISAO;
-    else if (operadorEnums == "&&") return OperadorEnums::ANDLOGICO;
-    else if (operadorEnums == "||") return OperadorEnums::ORLOGICO;
-    else if (operadorEnums == "!=") return OperadorEnums::XORLOGICO;
-    else if (operadorEnums == "&") return OperadorEnums::ANDBITWISE;
-    else throw std::invalid_argument("Escolha uma operação (+, -, *, /, &&, ||, != or &) correta ou digite exit para sair do programa!");
+    string OPERADORSOMA = "+";
+    
+    if(strcasecmp(operadorEnums.c_str(), OPERADORSOMA.c_str()) == 1) return OperadorEnums::SOMA;
+    // else if (operadorEnums === "-") return OperadorEnums::SUBTRACAO;
+    // else if (operadorEnums === "*") return OperadorEnums::MULTIPLICACAO;
+    // else if (operadorEnums === "/") return OperadorEnums::DIVISAO;
+    // else if (operadorEnums === "&&") return OperadorEnums::ANDLOGICO;
+    // else if (operadorEnums === "||") return OperadorEnums::ORLOGICO;
+    // else if (operadorEnums === "!=") return OperadorEnums::XORLOGICO;
+    // else if (operadorEnums === "&") return OperadorEnums::ANDBITWISE;
+    else return OperadorEnums::SEMOPERACAO;
 }
 
 string CalcularOperacao(int primeirovalor, int segundovalor, string operacao)
 {
     auto operatorEnums = StringToOperadorEnums(operacao);
-    string result = OperarCalculos::Operador(primeirovalor, segundovalor, operatorEnums);
+    OperarCalculos operarCalculos;
+
+    string result = "";
+    if (operatorEnums == OperadorEnums::SEMOPERACAO)
+    {
+        result = operarCalculos.Operador(primeirovalor, segundovalor, operatorEnums);
+    }
+    else
+    {
+        result = "Escolha uma operacao (+, -, *, /, &&, ||, != or &) correta ou digite exit para sair do programa!";
+    }
 
     return result;
 }

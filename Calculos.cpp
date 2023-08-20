@@ -15,10 +15,7 @@ int Calculos::Subtracao(int primeiroValor, int SegundoValor)
 
 double Calculos::Divisao(int primeiroValor, int SegundoValor)
 {
-    if (SegundoValor != 0)
-    {
-        return primeiroValor / SegundoValor;
-    }
+    return primeiroValor / SegundoValor;
 }
 
 double Calculos::Multiplicacao(int primeiroValor, int SegundoValor)

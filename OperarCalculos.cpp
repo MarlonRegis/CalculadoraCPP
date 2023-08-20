@@ -1,4 +1,5 @@
 #include "OperarCalculos.h"
+#include <iostream>
 
 using namespace Core;
 using namespace Core::Enums;
@@ -19,6 +20,7 @@ string OperarCalculos::Operador(int primeiroValor, int SegundoValor, OperadorEnu
     switch(operacao)
     {
         case OperadorEnums::SOMA:
+            cout << "CAIU AQUI SOMA!" << endl;
             return Soma(primeiroValor, SegundoValor);
         case OperadorEnums::SUBTRACAO: 
             return Subtracao(primeiroValor, SegundoValor);
@@ -34,6 +36,11 @@ string OperarCalculos::Operador(int primeiroValor, int SegundoValor, OperadorEnu
             return XorLogico(primeiroValor, SegundoValor);
         case OperadorEnums::ANDBITWISE: 
             return AndBitwise(primeiroValor, SegundoValor);
+        case OperadorEnums::SEMOPERACAO:
+            cout << "CAIU AQUI SEMOPERACAO!" << endl; 
+            return "SEM OPERACAO!";
+        default:
+            return "";
     }
 }
 
@@ -55,7 +62,7 @@ string OperarCalculos::Divisao(int primeiroValor, int segundoValor)
     }
     else
     {
-        return "Não existe divisão por zero!";
+        return "Nao existe divisao por zero!";
     }
 }
 

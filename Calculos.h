@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALCULOS_H
+#define CALCULOS_H
 
 namespace Core
 {
@@ -18,3 +19,5 @@ namespace Core
 
     };
 }
+
+#endif

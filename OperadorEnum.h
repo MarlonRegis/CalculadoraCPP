@@ -1,4 +1,5 @@
-#pragma once
+#ifndef OPERADORENUM_H
+#define OPERADORENUM_H
 
 namespace Core::Enums
 {
@@ -11,6 +12,9 @@ namespace Core::Enums
         ANDLOGICO,
         ORLOGICO,
         XORLOGICO,
-        ANDBITWISE
+        ANDBITWISE,
+        SEMOPERACAO
     };
 }
+
+#endif
