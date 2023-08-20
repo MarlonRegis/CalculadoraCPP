@@ -38,7 +38,7 @@ bool Calculos::OrLogico(int primeiroValor, int SegundoValor)
 
 bool Calculos::XorLogico(int primeiroValor, int SegundoValor)
 {
-    return primeiroValor ! || SegundoValor;
+    return primeiroValor != SegundoValor;
 }
 
 int Calculos::AndBitwise(int primeiroValor, int SegundoValor)

@@ -2,7 +2,6 @@
 
 namespace Core::Enums
 {
-
     enum class OperadorEnums
     {
         SOMA,

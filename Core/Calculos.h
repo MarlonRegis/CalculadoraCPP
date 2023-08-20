@@ -4,8 +4,9 @@ namespace Core
 {
     class Calculos
     {
-        public : 
+        public: 
             Calculos() = default;
+            ~Calculos() = default;
             int Soma(int primeiroValor, int segundoValor);
             int Subtracao(int primeiroValor, int segundoValor);
             double Multiplicacao(int primeiroValor, int segundoValor);
@@ -14,7 +15,6 @@ namespace Core
             bool OrLogico(int primeiroValor, int segundoValor);
             bool XorLogico(int primeiroValor, int segundoValor);
             int AndBitwise(int primeiroValor, int segundoValor);
-        private:
-            ~Calculos() = default;
+
     };
 }
