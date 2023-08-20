@@ -13,15 +13,22 @@ using namespace Core::Enums;
 OperadorEnums StringToOperadorEnums(string operadorEnums)
 {
     string OPERADORSOMA = "+";
+    string OPERADORSUBTRACAO = "-";
+    string OPERADORMULTIPLICACAO = "*";
+    string OPERADORDIVISAO = "/";
+    string OPERADORANDLOGICO = "&&";
+    string OPERADORORLOGICO = "||";
+    string OPERADORXORLOGICO = "!=";
+    string OPERADORANDBITWISE = "&";
     
-    if(strcasecmp(operadorEnums.c_str(), OPERADORSOMA.c_str()) == 1) return OperadorEnums::SOMA;
-    // else if (operadorEnums === "-") return OperadorEnums::SUBTRACAO;
-    // else if (operadorEnums === "*") return OperadorEnums::MULTIPLICACAO;
-    // else if (operadorEnums === "/") return OperadorEnums::DIVISAO;
-    // else if (operadorEnums === "&&") return OperadorEnums::ANDLOGICO;
-    // else if (operadorEnums === "||") return OperadorEnums::ORLOGICO;
-    // else if (operadorEnums === "!=") return OperadorEnums::XORLOGICO;
-    // else if (operadorEnums === "&") return OperadorEnums::ANDBITWISE;
+    if(strcasecmp(operadorEnums.c_str(), OPERADORSOMA.c_str()) == 0) return OperadorEnums::SOMA;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORSUBTRACAO.c_str()) == 0) return OperadorEnums::SUBTRACAO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORMULTIPLICACAO.c_str()) == 0) return OperadorEnums::MULTIPLICACAO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORDIVISAO.c_str()) == 0) return OperadorEnums::DIVISAO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORANDLOGICO.c_str()) == 0) return OperadorEnums::ANDLOGICO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORORLOGICO.c_str()) == 0) return OperadorEnums::ORLOGICO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORXORLOGICO.c_str()) == 0) return OperadorEnums::XORLOGICO;
+    else if(strcasecmp(operadorEnums.c_str(), OPERADORANDBITWISE.c_str()) == 0) return OperadorEnums::ANDBITWISE;
     else return OperadorEnums::SEMOPERACAO;
 }
 
@@ -31,7 +38,7 @@ string CalcularOperacao(int primeirovalor, int segundovalor, string operacao)
     OperarCalculos operarCalculos;
 
     string result = "";
-    if (operatorEnums == OperadorEnums::SEMOPERACAO)
+    if (operatorEnums != OperadorEnums::SEMOPERACAO)
     {
         result = operarCalculos.Operador(primeirovalor, segundovalor, operatorEnums);
     }
@@ -51,7 +58,7 @@ bool SairPrograma(string operacao)
     transform(operacao.begin(), operacao.end(), operacao.begin(), ::toupper);
     transform(sair.begin(), sair.end(), sair.begin(), ::toupper);
     
-    if (operacao == sair)
+    if (strcasecmp(operacao.c_str(), sair.c_str()) == 0)
     {
         exitPrograma = true;
     } 
@@ -74,9 +81,13 @@ int main()
         try
         {
             cout<<"Insira o primeiro valor inteiro a ser calculado: "<< endl;
-            cin >> primeiroValor;
+            if (!(cin >> primeiroValor))
+                throw std::invalid_argument("Inseriu o primeiro valor invalido!");
+
             cout<<"Insira o segundo valor inteiro a ser calculado: "<< endl;
-            cin >> segundoValor;
+            if (!(cin >> segundoValor))
+                throw std::invalid_argument("Inseriu o segundo valor invalido!");
+
             cout<<"Insira a operacao que voce deseja (+, -, *, /, &&, ||, != or &) ou exit para sair do programa): "<< endl;
             cin >> operacao;
 
@@ -84,15 +95,16 @@ int main()
             if (!sairPrograma)
             {
                 result = CalcularOperacao(primeiroValor, segundoValor, operacao);
-                cout << primeiroValor << " " << operacao << "" << segundoValor << " = " << result << endl;
+                cout << primeiroValor << " " << operacao << " " << segundoValor << " = " << result << endl;
             }
         }
         catch(const exception& e)
         {
             cout << e.what() << endl;
+            break;
         }
         
-    } while (sairPrograma);
+    } while (!sairPrograma);
 
     return 0;
 }
